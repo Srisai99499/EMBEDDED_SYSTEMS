@@ -7,7 +7,6 @@ void delay(unsigned int i);  // Generates a delay
 void cmd_lcd(unsigned char a);  // Sends a command to the LCD
 void data_lcd(unsigned char b);  // Sends data to the LCD
 void lcd_str(unsigned char *str);  // Displays a string on the LCD
-count = 0;
 // Pin definitions for RS and EN
 sbit rs = P2^0;  // RS pin connected to P2.0
 sbit en = P2^1;// EN pin connected to P2.1
@@ -18,8 +17,6 @@ sbit r4 = P1^3;// row4 pin connected to P1.3
 sbit c1 = P1^4;// column 1 pin connected to P1.4
 sbit c2 = P1^5;// column 2 pin connected to P1.5
 sbit c3 = P1^6;// column 3 pin connected to P1.6
-
-
 
 // Define the data port for the LCD
 sfr lcddata = 0xB0;  // LCD data connected to Port 3 (P3)
@@ -56,34 +53,33 @@ void main() {
         data_lcd('*');  // If the fourth row is pressed, display '*'.
     }
 }// Check if any key in the second  column is pressed.
-			else if(c2==0){
-			r1=r2=r3=r4=1;
-			c1=c2=c3=0;
-				if(r1==0){
-				data_lcd('2');
-			} else if(r2==0){
-				data_lcd('5');
-			}else if(r3==0){
-				data_lcd('8');
-			}else if(r4==0){
-				data_lcd('0');
-			}
+    else if(c2==0){
+	r1=r2=r3=r4=1;
+        c1=c2=c3=0;
+    if(r1==0){
+      data_lcd('2');
+    } else if(r2==0){
+      data_lcd('5');
+    }else if(r3==0){
+      data_lcd('8');
+    }else if(r4==0){
+       data_lcd('0');
+    }				
+}// Check if any key in the third  column is pressed.
+   else if(c3==0){
+      r1=r2=r3=r4=1;
+      c1=c2=c3=0;
+   if(r1==0){
+	data_lcd('3');
+   }else if(r2==0){
+	data_lcd('6');
+   }else if(r3==0){
+	data_lcd('9');
+   }else if(r4==0){
+	data_lcd('#');
+   }
 				
-		}	// Check if any key in the third  column is pressed.
-			else if(c3==0){
-			r1=r2=r3=r4=1;
-			c1=c2=c3=0;
-				if(r1==0){
-				data_lcd('3');
-			}else if(r2==0){
-				data_lcd('6');
-			}else if(r3==0){
-				data_lcd('9');
-			}else if(r4==0){
-				data_lcd('#');
-			}
-				
-		}	
+   }	
 }
 }
 		
@@ -120,7 +116,7 @@ void data_lcd(unsigned char b) {
 void lcd_str(unsigned char *str) {
     while (*str) {  // Loop through each character in the string
         data_lcd(*str++);  // Send each character to the LCD
-			  count = count+1;
+		
     }
 }
 
