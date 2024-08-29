@@ -55,34 +55,33 @@ void main() {
         data_lcd('*');  // If the fourth row is pressed, display '*'.
     }
 }// Check if any key in the second  column is pressed.
-			else if(c2==0){
-			r1=r2=r3=r4=1;
-			c1=c2=c3=0;
-				if(r1==0){
-				data_lcd('2');
-			} else if(r2==0){
-				data_lcd('5');
-			}else if(r3==0){
-				data_lcd('8');
-			}else if(r4==0){
-				data_lcd('0');
+	else if(c2==0){
+		r1=r2=r3=r4=1;
+		c1=c2=c3=0;
+		if(r1==0){
+			data_lcd('2');
+		} else if(r2==0){
+			data_lcd('5');
+		}else if(r3==0){
+			data_lcd('8');
+		}else if(r4==0){
+			data_lcd('0');
 			}
 				
-		}	// Check if any key in the third  column is pressed.
-			else if(c3==0){
-			r1=r2=r3=r4=1;
-			c1=c2=c3=0;
-				if(r1==0){
-				data_lcd('3');
-			}else if(r2==0){
-				data_lcd('6');
-			}else if(r3==0){
-				data_lcd('9');
-			}else if(r4==0){
-				data_lcd('#');
-			}
-				
-		}	
+}	// Check if any key in the third  column is pressed.
+	else if(c3==0){
+		r1=r2=r3=r4=1;
+		c1=c2=c3=0;
+		if(r1==0){
+			data_lcd('3');
+		}else if(r2==0){
+			data_lcd('6');
+		}else if(r3==0){
+			data_lcd('9');
+		}else if(r4==0){
+			data_lcd('#');
+			}		
+}	
 }
 }
 		
