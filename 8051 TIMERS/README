@@ -1,0 +1,46 @@
+# 8051 Timer Code Examples
+
+This repository contains example codes for using timers in the 8051 microcontroller. Each code demonstrates how to configure and use different modes of timers on the 8051, such as mode 0, mode 1, mode 2, and mode 3.
+
+## Files
+
+### 1. `timer_mode0.c`
+This file demonstrates the usage of Timer 0 in Mode 0 (13-bit timer mode). This mode is the least commonly used due to its lower precision compared to other modes.
+
+**Code Overview**:
+- TMOD is set to `0x00` (Timer 0 Mode 0).
+- TH0 and TL0 are set to `0x00` to start the timer from 0.
+- Timer 0 is started, and the code waits for the overflow flag `TF0` to be set.
+
+### 2. `timer_mode1.c`
+This file demonstrates the usage of Timer 0 in Mode 1 (16-bit timer mode). This mode allows for maximum delay.
+
+**Code Overview**:
+- TMOD is set to `0x01` (Timer 0 Mode 1).
+- TH0 and TL0 are set to `0x00` to start the timer from 0.
+- Timer 0 is started, and the code waits for an overflow flag `TF0` to be set, creating the maximum delay
+
+
+### 3. `timer_mode2.c`
+This file demonstrates the usage of Timer 0 in Mode 2 (8-bit auto-reload) configuration. Timer 0 is used for generating a delay with an overflow condition.
+
+**Code Overview**:
+- TMOD is set to `0x02` (Timer 0 Mode 2).
+- TH0 is loaded with the value `0x10` to set the reload value.
+- Timer 0 is started, and the code waits for the overflow flag `TF0` to be set.
+
+
+### 4. `timer_mode3.c`
+This file demonstrates the usage of Timer 0 in Mode 3 (split-timer mode). Timer 0 works as two separate 8-bit timers, but here only the first half is used.
+
+**Code Overview**:
+- TMOD is set to `0x03` (Timer 0 Mode 3).
+- Timer 0 is started, and the code waits for an overflow to stop the timer.
+
+
+## How to Use
+- These codes are written for the 8051 microcontroller and can be compiled using Keil uVision.
+- Connect the 8051 microcontroller to your development board and upload the compiled HEX file to run these programs.
+
+## License
+This project is licensed under the MIT License.
