@@ -1,46 +1,57 @@
-# 8051 Timer Code Examples
+**8051 Timer/counter 0 Modes Examples**
+This repository demonstrates the use of Timer 0 in the 8051 microcontroller, showcasing all 4 operating modes. Each mode is designed for specific timing operations and is useful for a variety of embedded system applications.
 
-This repository contains example codes for using timers in the 8051 microcontroller. Each code demonstrates how to configure and use different modes of timers on the 8051, such as mode 0, mode 1, mode 2, and mode 3.
+Overview
+In the 8051 microcontroller, Timer/counter  0 can be used in four different modes:
 
-## Files
-
-### 1. `timer_mode0.c`
-This file demonstrates the usage of Timer 0 in Mode 0 (13-bit timer mode). This mode is the least commonly used due to its lower precision compared to other modes.
-
-**Code Overview**:
-- TMOD is set to `0x00` (Timer 0 Mode 0).
-- TH0 and TL0 are set to `0x00` to start the timer from 0.
-- Timer 0 is started, and the code waits for the overflow flag `TF0` to be set.
-
-### 2. `timer_mode1.c`
-This file demonstrates the usage of Timer 0 in Mode 1 (16-bit timer mode). This mode allows for maximum delay.
-
-**Code Overview**:
-- TMOD is set to `0x01` (Timer 0 Mode 1).
-- TH0 and TL0 are set to `0x00` to start the timer from 0.
-- Timer 0 is started, and the code waits for an overflow flag `TF0` to be set, creating the maximum delay
+Mode 0 (13-bit Timer)
+Mode 1 (16-bit Timer)
+Mode 2 (8-bit Auto-Reload Timer)
+Mode 3 (Split Timer Mode)
 
 
-### 3. `timer_mode2.c`
-This file demonstrates the usage of Timer 0 in Mode 2 (8-bit auto-reload) configuration. Timer 0 is used for generating a delay with an overflow condition.
+1. **Timer 0 - Mode 0 (13-bit Timer)**
 
-**Code Overview**:
-- TMOD is set to `0x02` (Timer 0 Mode 2).
-- TH0 is loaded with the value `0x10` to set the reload value.
-- Timer 0 is started, and the code waits for the overflow flag `TF0` to be set.
+Mode 0 is the 13-bit timer mode, which utilizes 13 bits from the TL0 and TH0 registers.
+It counts from 0x0000 to 0x1FFF (8191 in decimal), making it capable of handling smaller time intervals.
+After the timer overflows, it sets the TF0 flag, indicating that the maximum count has been reached.
 
-
-### 4. `timer_mode3.c`
-This file demonstrates the usage of Timer 0 in Mode 3 (split-timer mode). Timer 0 works as two separate 8-bit timers, but here only the first half is used.
-
-**Code Overview**:
-- TMOD is set to `0x03` (Timer 0 Mode 3).
-- Timer 0 is started, and the code waits for an overflow to stop the timer.
+Key Points:
+13-bit timer: Uses 5 bits from TH0 and 8 bits from TL0.
+Suitable for small time delays.
+After overflow, the timer flag TF0 is set.
 
 
-## How to Use
-- These codes are written for the 8051 microcontroller and can be compiled using Keil uVision.
-- Connect the 8051 microcontroller to your development board and upload the compiled HEX file to run these programs.
+2. **Timer 0 - Mode 1 (16-bit Timer)**
 
-## License
-This project is licensed under the MIT License.
+Mode 1 is the 16-bit timer mode, which counts from 0x0000 to 0xFFFF (65535 in decimal).
+This mode allows for longer timing intervals compared to Mode 0.
+Similar to Mode 0, it raises the TF0 flag upon reaching the overflow condition.
+
+Key Points:
+16-bit timer: Utilizes all 8 bits from both TL0 and TH0.
+Suitable for longer delay operations.
+Overflow flag TF0 is triggered after reaching the maximum count.
+
+
+3. **Timer 0 - Mode 2 (8-bit Auto-Reload Timer)**
+
+Mode 2 is an 8-bit auto-reload mode. In this mode, the timer counts from 0x00 to 0xFF (255 in decimal).
+After the timer overflows, the value in the TH0 register is automatically reloaded into TL0, making this mode ideal for periodic tasks.
+The TF0 flag is set after every overflow, and the timer restarts with the reload value in TH0.
+
+Key Points:
+8-bit auto-reload timer: Counts from 0 to 255, then reloads the value from TH0.
+Suitable for periodic or repeated tasks like generating clock pulses.
+Automatically reloads the preset value from TH0 after each overflow.
+
+
+4. **Timer 0 - Mode 3 (Split Timer Mode)**
+Mode 3 splits Timer 0 into two independent 8-bit timers. TL0 and TH0 act as separate timers.
+In this mode, TL0 functions as an independent 8-bit timer controlled by TR0, while TH0 acts as another 8-bit timer controlled by TR1.
+This mode disables Timer 1, allowing only Timer 0 to function as two independent timers.
+
+Key Points:
+Split timer: TL0 and TH0 act as two separate 8-bit timers.
+TL0 is controlled by TR0, and TH0 is controlled by TR1.
+Disables Timer 1, allowing the use of two timers from Timer 0.
